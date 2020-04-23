@@ -35,6 +35,7 @@ module.exports = {
     },
     "rules": {
         "semi": "off",
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "no-unused-vars": "off",
     }
 };
