@@ -1,11 +1,13 @@
 import React from 'react'
 
-import { Header } from '#root/components/Header'
+import { Header, Grid, GlobalStyles } from '#root/components'
 
 export const Layout = ({ children }: { children: React.ReactChild }) => (
-  <div>
-    <Header />
-    <main>{children}</main>
-    <footer>footer</footer>
-  </div>
+  <>
+    <GlobalStyles />
+    <Grid.Layout templateRows="50px 1fr" css={{ minHeight: '100vh' }}>
+      <Header />
+      <main>{children}</main>
+    </Grid.Layout>
+  </>
 )
