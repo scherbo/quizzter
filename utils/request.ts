@@ -5,12 +5,12 @@ const SIGNIN = 'signin'
 const SIGNUP = 'signup'
 const PING = 'ping'
 
-type UserSignInData = {
+type UserSigninData = {
   email: string
   password: string
 }
 
-type UserSignUpData = UserSignInData & {
+type UserSignupData = UserSigninData & {
   name: string
 }
 
@@ -26,7 +26,7 @@ class RequestConstructor {
     }
   }
 
-  async signIn(data: UserSignInData): Promise<Record<string, any>> {
+  async signin(data: UserSigninData): Promise<Record<string, any>> {
     try {
       return await this.request.post(SIGNIN, { json: data }).json()
     } catch (error) {
@@ -35,7 +35,7 @@ class RequestConstructor {
     }
   }
 
-  async signUp(data: UserSignUpData): Promise<Record<string, any>> {
+  async signup(data: UserSignupData): Promise<Record<string, any>> {
     try {
       return await this.request.post(SIGNUP, { json: data }).json()
     } catch (error) {
