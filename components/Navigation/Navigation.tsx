@@ -24,7 +24,7 @@ const NAVIGATION = [
   },
   {
     text: 'Sign In',
-    href: '/auth',
+    href: '/signin',
   },
 ]
 
