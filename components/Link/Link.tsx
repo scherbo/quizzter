@@ -13,26 +13,27 @@ const ATag = styled.a`
     position: absolute;
     left: -3%;
     bottom: -2px;
+    width: 106%;
     height: 3px;
     background-color: ${({ theme }) => theme.colors.primaryLightest};
-    width: 0;
     transition: 0.3s;
   }
 
   &:hover {
     &:after {
-      width: 106%;
+      background-color: ${({ theme }) => theme.colors.primary};
     }
   }
 `
 
 type LinkProps = {
   href: string
+  prefetch?: boolean
   children: React.ReactChild | React.ReactChild[]
 }
 
-export const Link = ({ href, children }: LinkProps) => (
-  <NextLink href={href}>
+export const Link = ({ href, prefetch, children }: LinkProps) => (
+  <NextLink href={href} prefetch={prefetch}>
     <ATag>{children}</ATag>
   </NextLink>
 )
