@@ -14,7 +14,13 @@ const Home = () => {
         </Heading>
         <Paragraph size="md">
           A place where you can build and solve quizes.{' '}
-          {isAuthenticated ? <Link href="/builder">Build a quiz!</Link> : <Link href="/auth">Sign in to start</Link>}
+          {isAuthenticated ? (
+            <Link href="/builder" prefetch={false}>
+              Build a quiz!
+            </Link>
+          ) : (
+            <Link href="/signin">Sign in to start</Link>
+          )}
         </Paragraph>
       </div>
     </FlexContainer>
