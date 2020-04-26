@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import styled from '#root/theme'
-import { FlexContainer, Navigation } from '#root/components'
+import { Container, Navigation } from '#root/components'
 
 export const Logo = styled.a`
   text-decoration: none;
@@ -19,11 +19,11 @@ export const HeaderTag = styled.header`
 
 export const Header = () => (
   <HeaderTag>
-    <FlexContainer alignItems="center" justifyContent="space-between">
+    <Container display="flex" alignItems="center" justifyContent="space-between">
       <Link href="/">
         <Logo>Quizzter</Logo>
       </Link>
       <Navigation />
-    </FlexContainer>
+    </Container>
   </HeaderTag>
 )

@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-type FlexContainerProps = {
-  inline?: boolean
+type ContainerProps = {
+  display?: 'block' | 'flex'
   direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline'
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
 }
 
-const FlexContainerTag = styled.div<FlexContainerProps>`
-  display: ${({ inline }) => (inline ? 'inline-flex' : 'flex')};
+const ContainerTag = styled.div<ContainerProps>`
+  display: ${({ display = '' }) => display};
   flex-direction: ${({ direction }) => direction};
   flex-wrap: ${({ wrap }) => wrap};
   align-items: ${({ alignItems }) => alignItems};
@@ -21,23 +21,23 @@ const FlexContainerTag = styled.div<FlexContainerProps>`
   margin: 0 auto;
 `
 
-export const FlexContainer = ({
-  inline,
+export const Container = ({
+  display,
   direction,
   wrap,
   alignItems,
   justifyContent,
   children,
   ...rest
-}: FlexContainerProps & { children: React.ReactChild | React.ReactChild[] }) => (
-  <FlexContainerTag
+}: ContainerProps & { children: React.ReactChild | React.ReactChild[] }) => (
+  <ContainerTag
     {...rest}
-    inline={inline}
+    display={display}
     direction={direction}
     wrap={wrap}
     alignItems={alignItems}
     justifyContent={justifyContent}
   >
     {children}
-  </FlexContainerTag>
+  </ContainerTag>
 )

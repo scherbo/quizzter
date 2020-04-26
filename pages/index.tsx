@@ -2,12 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { RootState } from '#root/store'
-import { Paragraph, Heading, FlexContainer, Link } from '#root/components'
+import { Paragraph, Heading, Container, Link } from '#root/components'
 
 const Home = () => {
   const isAuthenticated = useSelector<RootState, boolean>((state) => state.session.authenticated)
   return (
-    <FlexContainer alignItems="center" justifyContent="center" css={{ minHeight: 500, textAlign: 'center' }}>
+    <Container display="flex" alignItems="center" justifyContent="center" css={{ minHeight: 500, textAlign: 'center' }}>
       <div>
         <Heading type="h2" css={{ marginBottom: 5 }}>
           Welcome to the Quizzter!
@@ -23,7 +23,7 @@ const Home = () => {
           )}
         </Paragraph>
       </div>
-    </FlexContainer>
+    </Container>
   )
 }
 

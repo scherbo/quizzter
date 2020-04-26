@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Field } from 'react-final-form'
 
 import { Request, validateSigninForm } from '#root/utils'
-import { FlexContainer, InputField, Button, Heading, Grid, Paragraph, Link } from '#root/components'
+import { Container, InputField, Button, Heading, Grid, Paragraph, Link } from '#root/components'
 import { SigninState } from '#root/types'
 
 const Auth = () => {
@@ -19,7 +19,12 @@ const Auth = () => {
   }
 
   return (
-    <FlexContainer alignItems="center" justifyContent="center" css={{ minHeight: '500px', textAlign: 'center' }}>
+    <Container
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      css={{ minHeight: '500px', textAlign: 'center' }}
+    >
       <Form onSubmit={handleSubmit} validate={validateSigninForm}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit} css={{ width: 280 }}>
@@ -46,7 +51,7 @@ const Auth = () => {
           </form>
         )}
       </Form>
-    </FlexContainer>
+    </Container>
   )
 }
 
