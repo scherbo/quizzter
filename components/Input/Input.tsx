@@ -14,17 +14,18 @@ const InputLabel = styled.label`
   color: ${({ theme }) => theme.colors.dark};
 `
 
-const InputValue = styled.input<{ hasError?: boolean }>`
+const InputValue = styled.input<{ hasError?: boolean; as?: 'textarea' }>`
   outline: none;
 
   width: 100%;
-  height: 40px;
+  height: ${({ as }) => (as ? '150px' : '40px')};
   line-height: 38px;
   padding: 0 15px;
   border: 1px solid ${({ hasError }) => (hasError ? 'red' : '#ddd')};
   border-radius: 5px;
   font-size: ${({ theme }) => theme.fonts.baseSize};
   transition: 0.3s;
+  resize: ${({ as }) => as && 'none'};
 
   &:focus {
     box-shadow: 0 0 3px 1px ${({ theme }) => theme.colors.primaryLightest};
@@ -46,10 +47,11 @@ type InputProps = {
   label?: React.ReactNode
   placeholder?: string
   error?: string
+  as?: 'textarea'
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Input = ({ name, label, value, placeholder, type, error, onChange, ...rest }: InputProps) => {
+export const Input = ({ name, label, value, placeholder, type, as, error, onChange, ...rest }: InputProps) => {
   return (
     <InputContainer {...rest}>
       {label && <InputLabel>{label}</InputLabel>}
@@ -60,6 +62,7 @@ export const Input = ({ name, label, value, placeholder, type, error, onChange, 
         type={type}
         onChange={onChange}
         hasError={error ? true : false}
+        as={as}
       />
       {error && <InputError>{error}</InputError>}
     </InputContainer>
