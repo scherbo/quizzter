@@ -17,3 +17,19 @@ export type SignupState = {
   password: string
   passwordRepeat: string
 }
+
+type Answer = {
+  answer: string
+  correct: boolean
+}
+
+type Question = {
+  question: string
+  answers: Answer[]
+}
+
+export type QuizData = {
+  title: string
+  description: string
+  questions: Question[]
+}
