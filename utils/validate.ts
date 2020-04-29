@@ -50,5 +50,22 @@ const signupSchema = yup.object().shape({
     }),
 })
 
+const builderSchema = yup.object().shape({
+  title: yup.string().required('Title is required'),
+  description: yup.string().required('Description is required'),
+  questions: yup.array().of(
+    yup.object().shape({
+      question: yup.string().required('Question is required'),
+      answers: yup.array().of(
+        yup.object().shape({
+          answer: yup.string().required('Answer is required'),
+          correct: yup.boolean(),
+        })
+      ),
+    })
+  ),
+})
+
 export const validateSigninForm = (values: SigninState) => validateYupSchema(signinSchema, values)
 export const validateSignupForm = (values: SignupState) => validateYupSchema(signupSchema, values)
+export const validateBuilderForm = (values: Record<string, any>) => validateYupSchema(builderSchema, values)
