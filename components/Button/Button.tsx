@@ -6,7 +6,7 @@ const ButtonTag = styled.button<{ btnType?: string; stretched?: boolean; disable
   outline: none;
   border: none;
 
-  min-width: 100px;
+  min-width: 135px;
   width: ${({ stretched }) => stretched && '100%'};
   height: 40px;
   line-height: 38px;

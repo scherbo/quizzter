@@ -26,7 +26,7 @@ const Auth = () => {
       css={{ minHeight: '500px', textAlign: 'center' }}
     >
       <Form onSubmit={handleSubmit} validate={validateSigninForm}>
-        {({ handleSubmit }) => (
+        {({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit} css={{ width: 280 }}>
             <Heading type="h3" css={{ marginBottom: 20 }}>
               Welcome back!
@@ -39,7 +39,7 @@ const Auth = () => {
                 <Field name="password" type="password" placeholder="Password" component={InputField} />
               </Grid.Box>
               <Grid.Box>
-                <Button htmlType="submit" type="neutral" stretched>
+                <Button htmlType="submit" type="neutral" disabled={submitting} stretched>
                   Submit
                 </Button>
               </Grid.Box>

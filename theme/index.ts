@@ -19,7 +19,6 @@ export const theme = {
     danger: '#ff6464',
     dangerLighter: '#ff7d7d',
     dangerLightest: '#ff9797',
-    pale: '#f5eaea',
     gray1: '#f8f8f8',
     gray2: '#dfdfdf',
     gray3: '#aaa',
@@ -35,6 +34,9 @@ export const theme = {
     h3Size: `${FONT_SIZE * 0.22}rem`,
     h4Size: `${FONT_SIZE * 0.19}rem`,
     baseLineHeight: 1.75,
+  },
+  common: {
+    borderRadius: '5px',
   },
 }
 
