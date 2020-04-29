@@ -1,9 +1,15 @@
 import React from 'react'
 import styled from '#root/theme'
 
-type HeadingType = 'h1' | 'h2' | 'h3' | 'h4'
+type As = 'h1' | 'h2' | 'h3' | 'h4'
+type TextAlign = 'left' | 'right' | 'center'
 
-const HeadingTag = styled.h1<{ as: HeadingType }>`
+type HeadingTagProps = {
+  as?: As
+  textAlign?: TextAlign
+}
+
+const HeadingTag = styled.h1<HeadingTagProps>`
   font-size: ${({ theme, as }) => {
     switch (as) {
       case 'h1':
@@ -16,17 +22,18 @@ const HeadingTag = styled.h1<{ as: HeadingType }>`
         return theme.fonts.h4Size
     }
   }};
+  text-align: ${({ textAlign }) => textAlign};
   line-height: ${({ theme }) => theme.fonts.baseLineHeight};
   color: ${({ theme }) => theme.colors.dark};
 `
 
-type HeadingProps = {
+type HeadingProps = HeadingTagProps & {
+  type: As
   children: React.ReactChild | React.ReactChild[]
-  type: HeadingType
 }
 
-export const Heading = ({ children, type, ...rest }: HeadingProps) => (
-  <HeadingTag {...rest} as={type}>
+export const Heading = ({ children, type, textAlign, ...rest }: HeadingProps) => (
+  <HeadingTag {...rest} as={type} textAlign={textAlign}>
     {children}
   </HeadingTag>
 )
