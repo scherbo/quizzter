@@ -12,6 +12,7 @@ const gapSizes = {
   md: '18px',
   lg: '24px',
   xl: '30px',
+  xxl: '40px',
 }
 
 type GridLayoutProps = {
