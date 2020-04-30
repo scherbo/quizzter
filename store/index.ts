@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { sessionActions, sessionReducer } from './sessionSlice'
-
-export { sessionActions }
+import { sessionReducer } from './sessionSlice'
+import { allQuizesReducer } from './allQuizesSlise'
 
 export const initStore = (initialState: Record<string, any>) =>
   configureStore({
     reducer: {
       session: sessionReducer,
+      allQuizes: allQuizesReducer,
     },
     preloadedState: initialState,
   })
@@ -16,3 +16,4 @@ export const initStore = (initialState: Record<string, any>) =>
 const store = initStore({})
 export type RootState = ReturnType<typeof store.getState>
 export { restoreSession } from './sessionSlice'
+export { getAllQuizes } from './allQuizesSlise'
