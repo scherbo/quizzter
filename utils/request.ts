@@ -2,7 +2,7 @@ import ky from 'ky-universal'
 
 import { QuizData } from '#root/types'
 
-const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'http://quizzr-web.herokuapp.com'
+const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://quizzr-api.herokuapp.com'
 const SIGNIN = 'signin'
 const SIGNUP = 'signup'
 const PING = 'ping'
