@@ -55,6 +55,15 @@ class RequestConstructor {
       return { error: error.message }
     }
   }
+
+  async getAllQuizes(): Promise<Record<string, any>> {
+    try {
+      return await this.request.get(`${QUIZ}/all`).json()
+    } catch (error) {
+      console.log('GET ALL QUIZES ERROR: ', error)
+      return { error: error.message }
+    }
+  }
 }
 
 export const Request = new RequestConstructor()
