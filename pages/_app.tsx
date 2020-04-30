@@ -24,6 +24,7 @@ const MyApp = ({ Component, pageProps, store }: MyAppProps) => {
 MyApp.getInitialProps = async ({ Component, ctx }: ExtendedAppContext) => {
   if (isServer()) {
     await restoreSession(ctx.store.dispatch, ctx.req?.headers?.cookie || '')
+    console.log('APP CONTEXT', ctx.req)
   }
 
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
