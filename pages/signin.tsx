@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
+import { setCookie } from 'nookies'
 
 import { Request, validateSigninForm } from '#root/utils'
 import { Container, InputField, Button, Heading, Grid, Paragraph, Link } from '#root/components'
@@ -9,9 +10,15 @@ const Auth = () => {
   const [asyncError, setAsyncError] = React.useState<null | string>(null)
 
   const handleSubmit = async (values: SigninState) => {
-    const { error } = await Request.signin(values)
+    const { error, data } = await Request.signin(values)
 
     setAsyncError(error)
+
+    if (data) {
+      setCookie(null, 'token', data.token, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+      })
+    }
 
     if (!error) {
       location.assign('/')
