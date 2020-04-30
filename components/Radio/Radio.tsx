@@ -30,7 +30,7 @@ const RadioRoot = styled.div<{ active?: boolean }>`
 
 type RadioProps = {
   active?: boolean
-  onClick: () => void
+  onClick?: () => void
 }
 
 export const Radio = ({ active, onClick }: RadioProps) => <RadioRoot active={active} onClick={onClick} />
