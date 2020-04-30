@@ -64,6 +64,15 @@ class RequestConstructor {
       return { error: error.message }
     }
   }
+
+  async getQuiz(id: string): Promise<Record<string, any>> {
+    try {
+      return await this.request.get(`${QUIZ}/${id}`).json()
+    } catch (error) {
+      console.log(`GET QUIZ ${id} ERROR: `, error)
+      return { error: error.message }
+    }
+  }
 }
 
 export const Request = new RequestConstructor()
