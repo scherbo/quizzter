@@ -49,7 +49,7 @@ const Home = () => {
           <div>
             {quizes.map((quiz) => (
               <NextLink href="/quiz/[quizId]" as={`/quiz/${quiz._id}`} key={quiz._id}>
-                <Card css={{ cursor: 'pointer' }}>
+                <Card css={{ cursor: 'pointer', marginBottom: 25 }}>
                   <Heading type="h4">{quiz.title}</Heading>
                   <Paragraph css={{ marginBottom: 25 }}>{quiz.description}</Paragraph>
                   <Paragraph>Created at: {getDate(quiz.creationDate)}</Paragraph>
