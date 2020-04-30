@@ -1,6 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'emotion-theming'
+import { parseCookies } from 'nookies'
 
 import { theme } from '#root/theme'
 import { Layout } from '#root/components'
@@ -24,7 +25,8 @@ const MyApp = ({ Component, pageProps, store }: MyAppProps) => {
 MyApp.getInitialProps = async ({ Component, ctx }: ExtendedAppContext) => {
   if (isServer()) {
     await restoreSession(ctx.store.dispatch, ctx.req?.headers?.cookie || '')
-    console.log('APP CONTEXT', ctx.req)
+    console.log('PARSED COOKIES', parseCookies(ctx))
+    // console.log('APP CONTEXT', ctx.req)
   }
 
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
