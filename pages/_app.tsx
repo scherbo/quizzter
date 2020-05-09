@@ -1,19 +1,23 @@
 import React from 'react'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { ThemeProvider } from 'emotion-theming'
 import { parseCookies } from 'nookies'
 
-import { theme } from '#root/theme'
+import { lightTheme, darkTheme } from '#root/theme'
 import { Layout } from '#root/components'
 import { isServer } from '#root/utils'
-import { restoreSession } from '#root/store'
+import { restoreSession, RootState } from '#root/store'
 import { MyAppProps, ExtendedAppContext } from '#root/types'
 import withRedux from '#root/lib/withRedux'
 
 const MyApp = ({ Component, pageProps, store }: MyAppProps) => {
+  const {
+    user: { theme },
+  } = store.getState()
+
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
