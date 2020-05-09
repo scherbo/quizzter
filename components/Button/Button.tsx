@@ -1,5 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/core'
+import darken from 'polished/lib/color/darken'
+
 import styled from '#root/theme'
 
 const ButtonTag = styled.button<{ btnType?: string; stretched?: boolean; disabled?: boolean }>`
@@ -17,11 +19,11 @@ const ButtonTag = styled.button<{ btnType?: string; stretched?: boolean; disable
   transition: 0.3s;
   cursor: pointer;
 
-  ${({ btnType, disabled, theme }: any) => {
+  ${({ btnType, disabled, theme }) => {
     if (disabled) {
       return css`
-        background-color: ${theme.colors.gray3};
-        color: ${theme.colors.gray2};
+        background-color: ${theme.colors.neutral};
+        color: ${theme.colors.neutralLightest};
       `
     }
 
@@ -54,15 +56,15 @@ const ButtonTag = styled.button<{ btnType?: string; stretched?: boolean; disable
         `
       default:
         return css`
-          background-color: ${theme.colors.dark};
-          color: #fff;
+          background-color: ${theme.colors.textMain};
+          color: ${theme.colors.background}};
 
           &:hover {
-            background-color: ${theme.colors.darkLighter};
+            background-color: ${darken(0.1, theme.colors.textMain)};
           }
 
           &:active {
-            background-color: ${theme.colors.darkLightest};
+            background-color: ${darken(0.2, theme.colors.textMain)};
           }
         `
     }

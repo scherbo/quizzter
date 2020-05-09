@@ -4,8 +4,7 @@ import styled from '#root/theme'
 const CardTag = styled.div`
   padding: 35px;
   border-radius: ${({ theme }) => theme.common.borderRadius};
-  background-color: #fff;
-  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.common.shadow};
 `
 
 type CardProps = {

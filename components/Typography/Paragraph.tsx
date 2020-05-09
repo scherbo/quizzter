@@ -19,7 +19,7 @@ export const ParagraphTag = styled.p<ParagraphTagProps>`
   }};
   text-align: ${({ textAlign }) => textAlign};
   line-height: ${({ theme }) => theme.fonts.baseLineHeight};
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.textOther};
 `
 
 type ParagraphProps = ParagraphTagProps & {

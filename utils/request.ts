@@ -7,6 +7,7 @@ const SIGNIN = 'signin'
 const SIGNUP = 'signup'
 const PING = 'ping'
 const QUIZ = 'quiz'
+const USER = 'user'
 
 type UserSigninData = {
   email: string
@@ -70,6 +71,15 @@ class RequestConstructor {
       return await this.request.get(`${QUIZ}/${id}`).json()
     } catch (error) {
       console.log(`GET QUIZ ${id} ERROR: `, error)
+      return { error: error.message }
+    }
+  }
+
+  async updateUser(data: any): Promise<Record<string, any>> {
+    try {
+      return await this.request.put(`${USER}`, { json: data }).json()
+    } catch (error) {
+      console.log(`UPDATE USER ERROR: `, error)
       return { error: error.message }
     }
   }
