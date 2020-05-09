@@ -37,6 +37,10 @@ const AUTHENTICATED_NAVIGATION = [
     text: 'Builder',
     href: '/builder',
   },
+  {
+    text: 'Profile',
+    href: '/profile',
+  },
 ]
 
 export const Navigation = () => {
