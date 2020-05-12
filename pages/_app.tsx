@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider, useSelector } from 'react-redux'
 import { ThemeProvider } from 'emotion-theming'
-import { parseCookies } from 'nookies'
+import { AppProps } from 'next/app'
 
 import { lightTheme, darkTheme } from '#root/theme'
 import { Layout } from '#root/components'
@@ -10,27 +10,33 @@ import { restoreSession, RootState } from '#root/store'
 import { MyAppProps, ExtendedAppContext } from '#root/types'
 import withRedux from '#root/lib/withRedux'
 
-const MyApp = ({ Component, pageProps, store }: MyAppProps) => {
-  const {
-    user: { theme },
-  } = store.getState()
-
+/*
+  I needed to rerender the whole application on theme change
+  so I had to make to comopnents
+*/
+const AppWithStoreProvider = ({ store, ...rest }: MyAppProps) => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <App {...rest} />
     </Provider>
   )
 }
 
-MyApp.getInitialProps = async ({ Component, ctx }: ExtendedAppContext) => {
+const App = ({ Component, pageProps }: AppProps) => {
+  const theme = useSelector<RootState, string>((s) => s.user.theme)
+
+  return (
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
+  )
+}
+
+AppWithStoreProvider.getInitialProps = async ({ Component, ctx }: ExtendedAppContext) => {
   if (isServer()) {
     await restoreSession(ctx.store.dispatch, ctx.req?.headers?.cookie || '')
-    console.log('PARSED COOKIES', parseCookies(ctx))
-    // console.log('APP CONTEXT', ctx.req)
   }
 
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
@@ -38,4 +44,4 @@ MyApp.getInitialProps = async ({ Component, ctx }: ExtendedAppContext) => {
   return { pageProps }
 }
 
-export default withRedux(MyApp)
+export default withRedux(AppWithStoreProvider)
