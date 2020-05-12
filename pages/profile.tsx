@@ -36,7 +36,7 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   const handleChangeTheme = (theme: 'light' | 'dark') => () => {
-    updateUser(dispatch, { theme }, () => location.reload())
+    updateUser(dispatch, { theme })
   }
 
   return (

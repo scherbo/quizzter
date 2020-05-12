@@ -60,15 +60,15 @@ export const signupUser = async (dispatch: any, data: SignupState, cb: () => voi
   }
 }
 
-export const updateUser = async (dispatch: any, data: any, cb: () => void) => {
+export const updateUser = async (dispatch: any, data: any) => {
   dispatch(userActions.userLoading())
 
-  const { error } = await Request.updateUser(data)
+  const { error, data: newData } = await Request.updateUser(data)
 
   if (error) {
     dispatch(userActions.userFailed(error))
   } else {
-    cb()
+    dispatch(userActions.userLoaded(newData))
   }
 }
 
