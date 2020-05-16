@@ -15,6 +15,8 @@ import withRedux from '#root/lib/withRedux'
   so I had to make to comopnents
 */
 const AppWithStoreProvider = ({ store, ...rest }: MyAppProps) => {
+  console.log('app')
+
   return (
     <Provider store={store}>
       <App {...rest} />
