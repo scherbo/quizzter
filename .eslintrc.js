@@ -36,6 +36,13 @@ module.exports = {
     "rules": {
         "semi": "off",
         "prettier/prettier": "error",
-        "no-unused-vars": "off",
-    }
+    },
+    "overrides": [
+        {
+            "files": ['*.ts', '*.tsx'],
+            "rules": {
+                '@typescript-eslint/no-unused-vars': [2, { "args": "none" }]
+            }
+        }
+    ]
 };
