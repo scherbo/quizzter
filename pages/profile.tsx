@@ -19,7 +19,7 @@ const ThemeColor = styled.div<{ color: 'light' | 'dark' }>`
   }};
   border-style: solid;
   border-width: 2px;
-  border-color: ${({ theme, color }) => {
+  border-color: ${({ theme }) => {
     if (theme.colors.background === '#fff') {
       return '#342e37'
     }
