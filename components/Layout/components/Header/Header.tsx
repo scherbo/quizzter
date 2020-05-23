@@ -2,7 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 
 import styled from '#root/theme'
-import { Container, Navigation } from '#root/components'
+import { Container } from '#root/components'
+
+import { Navigation } from './components'
 
 export const Logo = styled.a`
   text-decoration: none;

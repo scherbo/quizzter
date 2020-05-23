@@ -2,7 +2,8 @@ import React from 'react'
 import { useTheme } from 'emotion-theming'
 import { useRouter } from 'next/router'
 
-import { Header, Grid, GlobalStyles, Link } from '#root/components'
+import { Grid, GlobalStyles } from '#root/components'
+import { Header, Footer } from './components'
 
 export const Layout = ({ children }: { children: React.ReactChild }) => {
   const theme = useTheme<any>()
@@ -13,15 +14,10 @@ export const Layout = ({ children }: { children: React.ReactChild }) => {
   return (
     <>
       <GlobalStyles />
-      <Grid.Layout templateRows="50px 1fr" css={{ minHeight: '100vh', backgroundColor: theme.colors.background }}>
+      <Grid.Layout templateRows="50px 1fr auto" css={{ minHeight: '100vh', backgroundColor: theme.colors.background }}>
         <Header />
         <main css={{ paddingTop }}>{children}</main>
-        <footer css={{ padding: '20px 0', textAlign: 'center' }}>
-          created by{' '}
-          <Link href="https://github.com/scherbo" size="sm" target="_blank" external>
-            Sergey Scherbo
-          </Link>
-        </footer>
+        <Footer />
       </Grid.Layout>
     </>
   )

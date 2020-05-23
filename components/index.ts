@@ -1,6 +1,4 @@
 export { Layout } from './Layout'
-export { Header } from './Header'
-export { Navigation } from './Navigation'
 export { Grid } from './Grid'
 export { GlobalStyles } from './GlobalStyles'
 export { Heading, Paragraph } from './Typography'
