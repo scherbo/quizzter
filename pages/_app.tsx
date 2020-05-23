@@ -1,12 +1,12 @@
 import React from 'react'
-import { Provider, useSelector } from 'react-redux'
+import { Provider, useSelector, useDispatch } from 'react-redux'
 import { ThemeProvider } from 'emotion-theming'
 import { AppProps } from 'next/app'
 
 import { lightTheme, darkTheme } from '#root/theme'
 import { Layout } from '#root/components'
 import { isServer } from '#root/utils'
-import { restoreSession, RootState } from '#root/store'
+import { restoreSession, RootState, changeTheme } from '#root/store'
 import { MyAppProps, ExtendedAppContext } from '#root/types'
 import withRedux from '#root/lib/withRedux'
 
@@ -23,7 +23,13 @@ const AppWithStoreProvider = ({ store, ...rest }: MyAppProps) => {
 }
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const theme = useSelector<RootState, string>((s) => s.user.theme)
+  const theme = useSelector<RootState, string>((s) => s.theme)
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light'
+    changeTheme(dispatch, savedTheme)
+  }, [])
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
