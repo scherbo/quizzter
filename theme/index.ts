@@ -4,13 +4,26 @@ import darken from 'polished/lib/color/darken'
 
 import { FONT_SIZE } from '#root/constants'
 
+export const DARK = '#342e37'
+export const LIGHT = '#fff'
 const PRIMARY = '#3185FC'
-const DARK = '#342e37'
-const LIGHT = '#fff'
 const DANGER = '#ff6464'
 const NEUTRAL = '#999'
 
+const fonts = {
+  smallTextSize: `${FONT_SIZE * 0.12}rem`,
+  baseSize: `${FONT_SIZE * 0.14}rem`,
+  mediumTextSize: `${FONT_SIZE * 0.165}rem`,
+  bigTextSize: `${FONT_SIZE * 0.18}rem`,
+  h1Size: `${FONT_SIZE * 0.3}rem`,
+  h2Size: `${FONT_SIZE * 0.25}rem`,
+  h3Size: `${FONT_SIZE * 0.22}rem`,
+  h4Size: `${FONT_SIZE * 0.19}rem`,
+  baseLineHeight: 1.75,
+}
+
 export const lightTheme = {
+  name: 'lightTheme',
   colors: {
     primary: PRIMARY,
     primaryLighter: lighten(0.05, PRIMARY),
@@ -35,26 +48,17 @@ export const lightTheme = {
     borderMain: DARK,
     borderSecondary: '#aaa',
   },
-  fonts: {
-    smallTextSize: `${FONT_SIZE * 0.12}rem`,
-    baseSize: `${FONT_SIZE * 0.14}rem`,
-    mediumTextSize: `${FONT_SIZE * 0.165}rem`,
-    bigTextSize: `${FONT_SIZE * 0.18}rem`,
-    h1Size: `${FONT_SIZE * 0.3}rem`,
-    h2Size: `${FONT_SIZE * 0.25}rem`,
-    h3Size: `${FONT_SIZE * 0.22}rem`,
-    h4Size: `${FONT_SIZE * 0.19}rem`,
-    baseLineHeight: 1.75,
-  },
+  fonts,
   common: {
     borderRadius: '5px',
     shadow: '0 0 20px 2px rgba(0, 0, 0, .05)',
   },
 }
 
-type Theme = typeof lightTheme
+export type Theme = typeof lightTheme
 
 export const darkTheme: Theme = {
+  name: 'darkTheme',
   colors: {
     primary: PRIMARY,
     primaryLighter: lighten(0.05, PRIMARY),
@@ -79,17 +83,7 @@ export const darkTheme: Theme = {
     borderMain: LIGHT,
     borderSecondary: '#999',
   },
-  fonts: {
-    smallTextSize: `${FONT_SIZE * 0.12}rem`,
-    baseSize: `${FONT_SIZE * 0.14}rem`,
-    mediumTextSize: `${FONT_SIZE * 0.165}rem`,
-    bigTextSize: `${FONT_SIZE * 0.18}rem`,
-    h1Size: `${FONT_SIZE * 0.3}rem`,
-    h2Size: `${FONT_SIZE * 0.25}rem`,
-    h3Size: `${FONT_SIZE * 0.22}rem`,
-    h4Size: `${FONT_SIZE * 0.19}rem`,
-    baseLineHeight: 1.75,
-  },
+  fonts,
   common: {
     borderRadius: '5px',
     shadow: '0 0 20px 2px rgba(255, 255, 255, .05)',
