@@ -25,6 +25,7 @@ const HeadingTag = styled.h1<HeadingTagProps>`
   text-align: ${({ textAlign }) => textAlign};
   line-height: ${({ theme }) => theme.fonts.baseLineHeight};
   color: ${({ theme }) => theme.colors.textMain};
+  transition: 0.5s;
 `
 
 type HeadingProps = HeadingTagProps & {

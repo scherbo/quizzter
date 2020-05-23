@@ -27,7 +27,7 @@ const ATag = styled.a<{ size?: 'sm' | 'md' | 'lg' }>`
     width: 106%;
     height: 3px;
     background-color: ${({ theme }) => theme.colors.primaryLightest};
-    transition: 0.3s;
+    transition: 0.5s;
   }
 
   &:hover {

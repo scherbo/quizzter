@@ -7,7 +7,7 @@ const RadioRoot = styled.div<{ active?: boolean }>`
   height: 20px;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
-  transition: 0.3s;
+  transition: 0.5s;
   cursor: pointer;
 
   &:after {
@@ -20,7 +20,7 @@ const RadioRoot = styled.div<{ active?: boolean }>`
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.primary};
     opacity: ${({ active }) => (active ? 1 : 0)};
-    transition: 0.3s;
+    transition: 0.5s;
   }
 
   &:focus {

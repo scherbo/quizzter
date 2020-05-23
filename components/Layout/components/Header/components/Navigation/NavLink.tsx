@@ -10,6 +10,7 @@ type ATagProps = {
 export const ATag = styled.a<ATagProps>`
   font-size: ${({ theme }) => theme.fonts.baseSize};
   color: ${({ theme, isActive }) => (isActive ? theme.colors.textMain : theme.colors.textOther)};
+  transition: 0.5s;
   cursor: pointer;
 `
 

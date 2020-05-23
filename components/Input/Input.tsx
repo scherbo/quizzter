@@ -12,6 +12,7 @@ const InputLabel = styled.label`
   bottom: calc(100% + 3px);
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.textMain};
+  transition: 0.5s;
 `
 
 const InputValue = styled.input<{ hasError?: boolean; as?: 'textarea' }>`
@@ -25,7 +26,7 @@ const InputValue = styled.input<{ hasError?: boolean; as?: 'textarea' }>`
   border: 1px solid ${({ hasError, theme }) => (hasError ? 'red' : theme.colors.borderMain)};
   border-radius: 5px;
   font-size: ${({ theme }) => theme.fonts.baseSize};
-  transition: 0.3s;
+  transition: 0.5s;
   resize: ${({ as }) => as && 'none'};
   color: ${({ theme }) => theme.colors.textMain};
 

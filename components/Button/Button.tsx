@@ -16,7 +16,7 @@ const ButtonTag = styled.button<{ btnType?: string; stretched?: boolean; disable
   text-align: center;
   font-size: 1.4rem;
   font-weight: 600;
-  transition: 0.3s;
+  transition: 0.5s;
   cursor: pointer;
 
   ${({ btnType, disabled, theme }) => {
