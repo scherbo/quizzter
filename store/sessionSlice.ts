@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { Request } from '#root/utils'
 
-import { userActions } from './userSlice'
-
 const { actions: sessionActions, reducer: sessionReducer } = createSlice({
   name: 'session',
   initialState: {
@@ -38,13 +36,12 @@ const { actions: sessionActions, reducer: sessionReducer } = createSlice({
 export const restoreSession = async (dispatch: any, cookie: string) => {
   dispatch(sessionActions.sessionLoading())
 
-  const { error, data } = await Request.getSession(cookie)
+  const { error } = await Request.getSession(cookie)
 
   if (error) {
     dispatch(sessionActions.sessionFailed(error))
   } else {
     dispatch(sessionActions.sessionLoaded())
-    dispatch(userActions.userLoaded(data))
   }
 }
 

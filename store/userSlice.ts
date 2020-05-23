@@ -7,7 +7,6 @@ const { actions: userActions, reducer: userReducer } = createSlice({
   name: 'user',
   initialState: {
     loading: false,
-    theme: 'light',
     name: null,
     email: null,
     error: null,

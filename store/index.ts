@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { sessionReducer } from './sessionSlice'
 import { userReducer } from './userSlice'
 import { allQuizesReducer } from './allQuizesSlise'
+import { themeReducer } from './themeSlice'
 
 export const initStore = (initialState: Record<string, any>) =>
   configureStore({
@@ -9,6 +10,7 @@ export const initStore = (initialState: Record<string, any>) =>
       session: sessionReducer,
       user: userReducer,
       allQuizes: allQuizesReducer,
+      theme: themeReducer,
     },
     preloadedState: initialState,
   })
@@ -20,3 +22,4 @@ export type RootState = ReturnType<typeof store.getState>
 export { restoreSession } from './sessionSlice'
 export { getAllQuizes } from './allQuizesSlise'
 export { singinUser, signupUser, updateUser } from './userSlice'
+export { changeTheme } from './themeSlice'
