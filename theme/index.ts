@@ -36,6 +36,7 @@ export const lightTheme = {
     borderSecondary: '#aaa',
   },
   fonts: {
+    smallTextSize: `${FONT_SIZE * 0.12}rem`,
     baseSize: `${FONT_SIZE * 0.14}rem`,
     mediumTextSize: `${FONT_SIZE * 0.165}rem`,
     bigTextSize: `${FONT_SIZE * 0.18}rem`,
@@ -79,6 +80,7 @@ export const darkTheme: Theme = {
     borderSecondary: '#999',
   },
   fonts: {
+    smallTextSize: `${FONT_SIZE * 0.12}rem`,
     baseSize: `${FONT_SIZE * 0.14}rem`,
     mediumTextSize: `${FONT_SIZE * 0.165}rem`,
     bigTextSize: `${FONT_SIZE * 0.18}rem`,

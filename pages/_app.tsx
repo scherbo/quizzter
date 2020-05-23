@@ -12,7 +12,7 @@ import withRedux from '#root/lib/withRedux'
 
 /*
   I needed to rerender the whole application on theme change
-  so I had to make to comopnents
+  so I had to make two comopnents
 */
 const AppWithStoreProvider = ({ store, ...rest }: MyAppProps) => {
   return (

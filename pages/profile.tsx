@@ -40,7 +40,7 @@ const Profile = () => {
   }
 
   return (
-    <Container css={{ paddingTop: 50 }}>
+    <Container>
       <Heading type="h3">Theme color</Heading>
       <div css={{ display: 'flex' }}>
         <ThemeColor color="light" onClick={handleChangeTheme('light')} />
