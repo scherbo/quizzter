@@ -26,6 +26,7 @@ const ThemeColor = styled.div`
   width: 22px;
   height: 22px;
   border-radius: 50%;
+  cursor: pointer;
   background-color: ${({ theme }) => {
     return theme.name === 'lightTheme' ? DARK : LIGHT
   }};
@@ -72,7 +73,7 @@ export const Navigation = () => {
   }
 
   const handleChangeTheme = () => {
-    changeTheme(dispatch, theme === 'light' ? 'dark' : 'light')
+    dispatch(changeTheme(theme === 'light' ? 'dark' : 'light'))
   }
 
   return (
