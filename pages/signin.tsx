@@ -1,28 +1,19 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Form, Field } from 'react-final-form'
-import { setCookie } from 'nookies'
 
-import { Request, validateSigninForm } from '#root/utils'
+import { validateSigninForm } from '#root/utils'
+import { UNAUTHORIZED } from '#root/constants'
 import { Container, InputField, Button, Heading, Grid, Paragraph, Link } from '#root/components'
+import { signinUser, RootState } from '#root/store'
 import { SigninState } from '#root/types'
 
 const Auth = () => {
-  const [asyncError, setAsyncError] = React.useState<null | string>(null)
+  const dispatch = useDispatch()
+  const authError = useSelector<RootState, string | null>((s) => s.session.error)
 
-  const handleSubmit = async (values: SigninState) => {
-    const { error, data } = await Request.signin(values)
-
-    setAsyncError(error)
-
-    if (data) {
-      setCookie(null, 'token', data.token, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-      })
-    }
-
-    if (!error) {
-      location.assign('/')
-    }
+  const handleSubmit = (values: SigninState) => {
+    dispatch(signinUser(values))
   }
 
   return (
@@ -51,7 +42,7 @@ const Auth = () => {
                 </Button>
               </Grid.Box>
             </Grid.Layout>
-            {asyncError && <Paragraph>{asyncError}</Paragraph>}
+            {authError && authError !== UNAUTHORIZED && <Paragraph>{authError}</Paragraph>}
             <Paragraph css={{ marginTop: 20 }}>
               Don&apos;t have an account yet? <Link href="/signup">Sign up</Link>
             </Paragraph>
