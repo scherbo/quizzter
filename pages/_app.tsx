@@ -28,7 +28,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   React.useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light'
-    changeTheme(dispatch, savedTheme)
+    dispatch(changeTheme(savedTheme))
   }, [])
 
   return (
@@ -42,7 +42,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 AppWithStoreProvider.getInitialProps = async ({ Component, ctx }: ExtendedAppContext) => {
   if (isServer()) {
-    await restoreSession(ctx.store.dispatch, ctx.req?.headers?.cookie || '')
+    await ctx.store.dispatch(restoreSession(ctx.req?.headers?.cookie || '') as any)
   }
 
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}

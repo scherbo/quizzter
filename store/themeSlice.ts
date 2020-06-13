@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { AppThunk } from '.'
+
 export const { actions: themeActions, reducer: themeReducer } = createSlice({
   name: 'theme',
   initialState: 'light',
@@ -10,7 +12,7 @@ export const { actions: themeActions, reducer: themeReducer } = createSlice({
   },
 })
 
-export const changeTheme = (dispatch: any, newTheme: string) => {
+export const changeTheme = (newTheme: string): AppThunk => async (dispatch) => {
   localStorage.setItem('theme', newTheme)
   dispatch(themeActions.toggle(newTheme))
 }

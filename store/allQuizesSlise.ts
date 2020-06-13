@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { Request } from '#root/utils'
 
+import { AppThunk } from './'
+
 const { actions: allQuizesActions, reducer: allQuizesReducer } = createSlice({
   name: 'allQuizes',
   initialState: {
@@ -33,8 +35,8 @@ const { actions: allQuizesActions, reducer: allQuizesReducer } = createSlice({
   },
 })
 
-export const getAllQuizes = async (dispatch: any) => {
-  dispatch(allQuizesActions.allQuizesLoading())
+export const getAllQuizes = (): AppThunk => async (dispatch) => {
+  dispatch(allQuizesActions.allQuizesLoading)
 
   const { error, data } = await Request.getAllQuizes()
 

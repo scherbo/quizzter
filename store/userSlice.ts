@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { Request } from '#root/utils'
-import { SigninState, SignupState } from '#root/types'
+import { AppThunk } from '.'
 
 const { actions: userActions, reducer: userReducer } = createSlice({
   name: 'user',
@@ -35,31 +35,7 @@ const { actions: userActions, reducer: userReducer } = createSlice({
   },
 })
 
-export const singinUser = async (dispatch: any, data: SigninState, cb: () => void) => {
-  dispatch(userActions.userLoading())
-
-  const { error } = await Request.signin(data)
-
-  if (error) {
-    dispatch(userActions.userFailed(error))
-  } else {
-    cb()
-  }
-}
-
-export const signupUser = async (dispatch: any, data: SignupState, cb: () => void) => {
-  dispatch(userActions.userLoading())
-
-  const { error } = await Request.signup(data)
-
-  if (error) {
-    dispatch(userActions.userFailed(error))
-  } else {
-    cb()
-  }
-}
-
-export const updateUser = async (dispatch: any, data: any) => {
+export const updateUser = (data: any): AppThunk => async (dispatch) => {
   dispatch(userActions.userLoading())
 
   const { error, data: newData } = await Request.updateUser(data)

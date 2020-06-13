@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { setCookie } from 'nookies'
 
 import { Request } from '#root/utils'
+import { UNAUTHORIZED } from '#root/constants'
+import { SigninState, SignupState } from '#root/types'
+import { AppThunk } from '.'
 
 const { actions: sessionActions, reducer: sessionReducer } = createSlice({
   name: 'session',
@@ -33,15 +37,47 @@ const { actions: sessionActions, reducer: sessionReducer } = createSlice({
   },
 })
 
-export const restoreSession = async (dispatch: any, cookie: string) => {
+export const restoreSession = (cookie: string): AppThunk => async (dispatch) => {
   dispatch(sessionActions.sessionLoading())
 
   const { error } = await Request.getSession(cookie)
 
   if (error) {
-    dispatch(sessionActions.sessionFailed(error))
+    dispatch(sessionActions.sessionFailed(UNAUTHORIZED))
   } else {
     dispatch(sessionActions.sessionLoaded())
+  }
+}
+
+export const signinUser = (data: SigninState): AppThunk => async (dispatch) => {
+  dispatch(sessionActions.sessionLoading())
+
+  const { error, data: responseData } = await Request.signin(data)
+
+  if (error) {
+    dispatch(sessionActions.sessionFailed(error))
+  } else {
+    setCookie(null, 'token', responseData.token, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    })
+
+    location.assign('/')
+  }
+}
+
+export const signupUser = (data: SignupState): AppThunk => async (dispatch) => {
+  dispatch(sessionActions.sessionLoading())
+
+  const { error, data: responseData } = await Request.signup(data)
+
+  if (error) {
+    dispatch(sessionActions.sessionFailed(error))
+  } else {
+    setCookie(null, 'token', responseData.token, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    })
+
+    location.assign('/')
   }
 }
 
