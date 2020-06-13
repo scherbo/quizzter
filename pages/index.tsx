@@ -64,7 +64,7 @@ const Home = () => {
 }
 
 Home.getInitialProps = async (ctx: ExtendedNextPageContext) => {
-  await getAllQuizes(ctx.store.dispatch)
+  await ctx.store.dispatch(getAllQuizes() as any)
 
   return {}
 }
