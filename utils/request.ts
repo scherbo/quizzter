@@ -6,6 +6,7 @@ const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001
 const SIGNIN = 'signin'
 const SIGNUP = 'signup'
 const PING = 'ping'
+const VERIFY_ACCOUNT = 'verify-account'
 const QUIZ = 'quiz'
 const USER = 'user'
 
@@ -26,6 +27,15 @@ class RequestConstructor {
       return await this.request.get(PING, { headers: { Cookie: cookie } }).json()
     } catch (error) {
       console.error('PING ERROR: ', error.message)
+      return { error: error.message }
+    }
+  }
+
+  async verifyAccount(hash: string): Promise<any> {
+    try {
+      return await this.request.get(`${VERIFY_ACCOUNT}/${hash}`).json()
+    } catch (error) {
+      console.log('VERIFY ACCOUNT ERROR: ', error.message)
       return { error: error.message }
     }
   }
