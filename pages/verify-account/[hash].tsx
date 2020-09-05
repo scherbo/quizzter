@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Paragraph, Heading } from '#root/components'
+import { Container, Paragraph, Text } from '#root/components'
 import { ExtendedNextPageContext } from '#root/types'
 import { Request } from '#root/utils'
 
@@ -9,9 +9,16 @@ interface VerifyProps {
 
 const Verify = ({ email }: VerifyProps) => {
   return (
-    <Container>
-      <Heading type="h3">{email}</Heading>
-      <Paragraph>You visited this page to verify your account!</Paragraph>
+    <Container display="flex" alignItems="center" justifyContent="center" css={{ height: 280 }}>
+      <div css={{ textAlign: 'center' }}>
+        <Paragraph size="md" css={{ marginBottom: 10 }}>
+          You account was verified:{' '}
+          <Text size="md" color="main" weight="bold">
+            {email}
+          </Text>
+        </Paragraph>
+        <Paragraph size="md">We hope you'll enjoy using our application</Paragraph>
+      </div>
     </Container>
   )
 }
