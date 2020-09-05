@@ -1,7 +1,7 @@
 export { Layout } from './Layout'
 export { Grid } from './Grid'
 export { GlobalStyles } from './GlobalStyles'
-export { Heading, Paragraph } from './Typography'
+export { Heading, Paragraph, Text } from './Typography'
 export { Container } from './Container'
 export { Button } from './Button'
 export { Link } from './Link'
