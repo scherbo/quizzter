@@ -68,15 +68,11 @@ export const signinUser = (data: SigninState): AppThunk => async (dispatch) => {
 export const signupUser = (data: SignupState): AppThunk => async (dispatch) => {
   dispatch(sessionActions.sessionLoading())
 
-  const { error, data: responseData } = await Request.signup(data)
+  const { error } = await Request.signup(data)
 
   if (error) {
     dispatch(sessionActions.sessionFailed(error))
   } else {
-    setCookie(null, 'token', responseData.token, {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-    })
-
     location.assign('/')
   }
 }
