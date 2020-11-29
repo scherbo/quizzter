@@ -10,6 +10,8 @@ import withProtection from '#root/lib/withProtection'
 import { GeneralFields } from './generalFields'
 import { Question } from './question'
 import { Answer } from './answer'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
 
 const INITIAL_VALUES = {
   questions: [
@@ -34,10 +36,20 @@ const INITIAL_VALUES = {
 }
 
 const Builder = () => {
-  const handleSubmit = async (values: any) => {
-    const response = await Request.createQuiz(values)
+  const router = useRouter()
 
-    console.log(response)
+  const handleSubmit = async (values: any) => {
+    const { error } = await Request.createQuiz(values)
+
+    if (error) {
+      toast.error(error)
+    } else {
+      toast.success('Quiz was successfully created!')
+
+      setTimeout(() => {
+        router.push('/')
+      }, 3000)
+    }
   }
 
   const handleRemoveQuestion = (questions: any, index: number) => () => {
