@@ -13,7 +13,7 @@ interface AnswerProps {
   onRemove: () => void
 }
 
-export const Answer: React.FC<AnswerProps> = ({
+export const Answer = ({
   active,
   disabled,
   answerName,
@@ -21,7 +21,7 @@ export const Answer: React.FC<AnswerProps> = ({
   placeholder = 'Answer Sample',
   onSelect,
   onRemove,
-}) => {
+}: AnswerProps) => {
   return (
     <Grid.Layout templateColumns="auto 1fr auto" alignItems="center" gap="sm">
       <Radio active={active} onClick={onSelect} />
