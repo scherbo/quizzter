@@ -1,9 +1,57 @@
 import * as yup from 'yup'
 import { SigninState, SignupState } from '#root/types'
 
+const isDefined = (value: any) => value !== null && value !== undefined
+
 const createNestedField = (path: string, value: any) => {
-  const keys = path.split('.')
-  return keys.reduceRight((obj, key, i) => ({ [key]: i === keys.length - 1 ? value : obj }), {})
+  const keys = path
+    .split(/(\[\d\])(\.)/i)
+    .filter((key) => key !== '.')
+    .map((key) => {
+      const found = key.match(/\d/)
+      return found ? Number(found[0]) : key
+    })
+
+  const { acc: nestedObject } = keys.reduceRight<{ acc: Record<string, any>; cachedIndex: number | null }>(
+    ({ acc, cachedIndex }, curr, i) => {
+      // it's an index of an array - cache it and apply in the next iteration
+      if (typeof curr === 'number') {
+        return {
+          acc: {
+            ...acc,
+          },
+          cachedIndex: curr,
+        }
+      }
+
+      // if there is cachedIndex - current key is an array
+      if (isDefined(cachedIndex)) {
+        let emptyArray: any = []
+        emptyArray[cachedIndex!] = acc
+
+        return {
+          acc: {
+            [curr]: emptyArray,
+          },
+          cachedIndex: null,
+        }
+      }
+
+      // otherwise nest
+      return {
+        acc: {
+          [curr]: i === keys.length - 1 ? value : acc,
+        },
+        cachedIndex,
+      }
+    },
+    {
+      acc: {},
+      cachedIndex: null,
+    }
+  )
+
+  return nestedObject
 }
 
 const validateYupSchema = async (schema: yup.ObjectSchema, values: Record<string, any>) => {
