@@ -10,13 +10,13 @@ interface QuestionProps {
   onRemove: () => void
 }
 
-export const Question: React.FC<QuestionProps> = ({
+export const Question = ({
   questionName,
   disabled,
   label,
   placeholder = 'Sample question',
   onRemove,
-}) => {
+}: QuestionProps) => {
   return (
     <Grid.Layout templateColumns="1fr auto" gap="sm">
       <Field name={`${questionName}.question`} placeholder={placeholder} label={label} component={InputField} />

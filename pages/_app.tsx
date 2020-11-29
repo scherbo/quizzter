@@ -10,6 +10,8 @@ import { restoreSession, RootState, changeTheme } from '#root/store'
 import { MyAppProps, ExtendedAppContext } from '#root/types'
 import withRedux from '#root/lib/withRedux'
 
+import 'react-toastify/dist/ReactToastify.css'
+
 /*
   I needed to rerender the whole application on theme change
   so I had to make two comopnents

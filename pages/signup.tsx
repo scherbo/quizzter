@@ -1,16 +1,14 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { validateSignupForm } from '#root/utils'
-import { UNAUTHORIZED } from '#root/constants'
 import { Container, Button, Heading, Grid, Paragraph, Link, InputField } from '#root/components'
 import { SignupState } from '#root/types'
-import { RootState, signupUser } from '#root/store'
+import { signupUser } from '#root/store'
 
 const Auth = () => {
   const dispatch = useDispatch()
-  const authError = useSelector<RootState, string | null>((s) => s.session.error)
 
   const handleSubmit = (values: SignupState) => {
     dispatch(signupUser(values))
@@ -48,7 +46,6 @@ const Auth = () => {
                 </Button>
               </Grid.Box>
             </Grid.Layout>
-            {authError && authError !== UNAUTHORIZED && <Paragraph>{authError}</Paragraph>}
             <Paragraph css={{ marginTop: 20 }}>
               Already have an account? <Link href="/signin">Sign in</Link>
             </Paragraph>

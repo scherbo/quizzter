@@ -5,6 +5,7 @@ import { Request } from '#root/utils'
 import { UNAUTHORIZED } from '#root/constants'
 import { SigninState, SignupState } from '#root/types'
 import { AppThunk } from '.'
+import { toast } from 'react-toastify'
 
 const { actions: sessionActions, reducer: sessionReducer } = createSlice({
   name: 'session',
@@ -56,6 +57,7 @@ export const signinUser = (data: SigninState): AppThunk => async (dispatch) => {
 
   if (error) {
     dispatch(sessionActions.sessionFailed(error))
+    toast.error(error)
   } else {
     setCookie(null, 'token', responseData.token, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -72,8 +74,13 @@ export const signupUser = (data: SignupState): AppThunk => async (dispatch) => {
 
   if (error) {
     dispatch(sessionActions.sessionFailed(error))
+    toast.error(error)
   } else {
-    location.assign('/')
+    toast.success('Account was successfully created. Please check your email')
+
+    setTimeout(() => {
+      location.assign('/')
+    }, 3000)
   }
 }
 

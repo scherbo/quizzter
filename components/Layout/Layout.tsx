@@ -2,9 +2,11 @@ import React from 'react'
 import { useTheme } from 'emotion-theming'
 import { useRouter } from 'next/router'
 import { css } from '@emotion/core'
-import { Theme } from '#root/theme'
 
+import { Theme } from '#root/theme'
+import { ToastContainer } from '#root/providers/Toastify'
 import { Grid, GlobalStyles } from '#root/components'
+
 import { Header, Footer } from './components'
 
 const layoutStyles = (theme: Theme) => css`
@@ -17,7 +19,7 @@ export const Layout = ({ children }: { children: React.ReactChild }) => {
   const theme = useTheme<Theme>()
   const { pathname } = useRouter()
 
-  const paddingTop = React.useMemo(() => (pathname === '/' ? 0 : 50), [pathname])
+  const paddingTop = pathname === '/' ? 0 : 50
 
   return (
     <>
@@ -26,6 +28,7 @@ export const Layout = ({ children }: { children: React.ReactChild }) => {
         <Header />
         <main css={{ paddingTop }}>{children}</main>
         <Footer />
+        <ToastContainer />
       </Grid.Layout>
     </>
   )

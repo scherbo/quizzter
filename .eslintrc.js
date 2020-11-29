@@ -41,7 +41,8 @@ module.exports = {
         {
             "files": ['*.ts', '*.tsx'],
             "rules": {
-                '@typescript-eslint/no-unused-vars': [2, { "args": "none" }]
+                '@typescript-eslint/no-unused-vars': [2, { "args": "none" }],
+                'react/no-unescaped-entities': "off"
             }
         }
     ]
