@@ -57,6 +57,10 @@ const AUTHENTICATED_NAVIGATION = [
     href: '/builder',
   },
   {
+    text: 'My quizes',
+    href: '/my-quizes',
+  },
+  {
     text: 'Profile',
     href: '/profile',
   },
