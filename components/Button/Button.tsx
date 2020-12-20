@@ -8,10 +8,11 @@ const ButtonTag = styled.button<{ btnType?: string; stretched?: boolean; disable
   outline: none;
   border: none;
 
-  min-width: 135px;
+  min-width: 100px;
   width: ${({ stretched }) => stretched && '100%'};
   height: 40px;
   line-height: 38px;
+  padding: 0 10px;
   border-radius: 5px;
   text-align: center;
   font-size: 1.4rem;

@@ -2,9 +2,9 @@ import React from 'react'
 import styled from '#root/theme'
 
 const CardTag = styled.div`
-  padding: 35px;
+  padding: 25px;
   border-radius: ${({ theme }) => theme.common.borderRadius};
-  box-shadow: ${({ theme }) => theme.common.shadow};
+  background-color: ${({ theme }) => theme.colors.backgroundThinner};
 `
 
 type CardProps = {

@@ -85,12 +85,12 @@ const Builder = () => {
 
   return (
     <Container>
-      <Heading type="h2" textAlign="center">
-        Quiz builder
-      </Heading>
-      <Paragraph textAlign="center">
-        This is a quiz builder. Here you will create awesome quizes to share them with your friends later!
-      </Paragraph>
+      <div css={{ padding: '0 25px', marginBottom: 25 }}>
+        <Heading type="h2">Quiz builder</Heading>
+        <Paragraph size="md">
+          This is a quiz builder. Here you will create awesome quizes to share them with your friends later!
+        </Paragraph>
+      </div>
       <Form
         onSubmit={handleSubmit}
         initialValues={INITIAL_VALUES}
@@ -98,7 +98,7 @@ const Builder = () => {
         mutators={{ ...arrayMutators }}
       >
         {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} css={{ marginTop: 50 }}>
+          <form onSubmit={handleSubmit}>
             <Card>
               <Grid.Layout gap="xxl">
                 {/* GENERAL FIELDS */}
