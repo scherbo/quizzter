@@ -4,11 +4,12 @@ import darken from 'polished/lib/color/darken'
 
 import { FONT_SIZE } from '#root/constants'
 
-export const DARK = '#342e37'
+export const DARK = '#1a1c20'
 export const LIGHT = '#fff'
-const PRIMARY = '#3185FC'
+const PRIMARY = '#16a596'
 const DANGER = '#ff6464'
 const NEUTRAL = '#999'
+const LIGHT_BG = '#f4f4f2'
 
 const fonts = {
   smallTextSize: `${FONT_SIZE * 0.12}rem`,
@@ -37,7 +38,8 @@ export const lightTheme = {
     neutralLighter: lighten(0.1, NEUTRAL),
     neutralLightest: lighten(0.2, NEUTRAL),
 
-    background: LIGHT,
+    background: LIGHT_BG,
+    backgroundThinner: darken(0.025, LIGHT),
     backgroundSecondary: darken(0.1, LIGHT),
     backgroundOther: darken(0.2, LIGHT),
 
@@ -46,7 +48,8 @@ export const lightTheme = {
     textOther: lighten(0.4, DARK),
 
     borderMain: DARK,
-    borderSecondary: '#aaa',
+    borderSecondary: lighten(0.5, DARK),
+    borderOther: lighten(0.65, DARK),
   },
   fonts,
   common: {
@@ -73,6 +76,7 @@ export const darkTheme: Theme = {
     neutralLightest: lighten(0.2, NEUTRAL),
 
     background: DARK,
+    backgroundThinner: lighten(0.025, DARK),
     backgroundSecondary: lighten(0.1, DARK),
     backgroundOther: lighten(0.2, DARK),
 
@@ -81,7 +85,8 @@ export const darkTheme: Theme = {
     textOther: darken(0.4, LIGHT),
 
     borderMain: LIGHT,
-    borderSecondary: '#999',
+    borderSecondary: darken(0.5, LIGHT),
+    borderOther: darken(0.65, LIGHT),
   },
   fonts,
   common: {

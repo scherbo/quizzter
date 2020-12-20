@@ -1,8 +1,8 @@
 import React from 'react'
-import { NextComponentType } from 'next'
+import { NextPage } from 'next'
 import { ExtendedNextPageContext } from '#root/types'
 
-export default function withProtection(Component: NextComponentType) {
+export default function withProtection(Component: NextPage) {
   return class Authenticated extends React.Component {
     static async getInitialProps(ctx: ExtendedNextPageContext) {
       if (ctx.res) {
