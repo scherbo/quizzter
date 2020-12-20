@@ -85,6 +85,24 @@ class RequestConstructor {
     }
   }
 
+  async getOwnersQuizes(cookie: string): Promise<Record<string, any>> {
+    try {
+      return await this.request.get(`${QUIZ}/owners`, { headers: { Cookie: cookie } }).json()
+    } catch (error) {
+      console.log(`GET OWNERS QUIZES ERROR: `, error)
+      return { error: error.message }
+    }
+  }
+
+  async removeMyQuiz(id: string): Promise<Record<string, any>> {
+    try {
+      return await this.request.delete(`${QUIZ}/owners/${id}`).json()
+    } catch (error) {
+      console.log(`REMOVE OWNERS QUIZ ERROR: `, error)
+      return { error: error.message }
+    }
+  }
+
   async updateUser(data: any): Promise<Record<string, any>> {
     try {
       return await this.request.put(`${USER}`, { json: data }).json()

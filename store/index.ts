@@ -3,6 +3,7 @@ import { sessionReducer } from './sessionSlice'
 import { userReducer } from './userSlice'
 import { allQuizesReducer } from './allQuizesSlise'
 import { themeReducer } from './themeSlice'
+import { myQuizesReducer } from './myQuizesSlice'
 
 export const initStore = (initialState: Record<string, any>) =>
   configureStore({
@@ -10,6 +11,7 @@ export const initStore = (initialState: Record<string, any>) =>
       session: sessionReducer,
       user: userReducer,
       allQuizes: allQuizesReducer,
+      myQuizes: myQuizesReducer,
       theme: themeReducer,
     },
     preloadedState: initialState,
@@ -24,5 +26,6 @@ export type AppDispatch = typeof store.dispatch
 
 export { restoreSession, signinUser, signupUser } from './sessionSlice'
 export { getAllQuizes } from './allQuizesSlise'
+export { getMyQuizes, removeMyQuiz } from './myQuizesSlice'
 export { updateUser } from './userSlice'
 export { changeTheme } from './themeSlice'
