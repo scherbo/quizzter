@@ -18,14 +18,16 @@ export type SignupState = {
   passwordRepeat: string
 }
 
-type Answer = {
+export interface Answer {
   answer: string
   correct: boolean
+  _id: string
 }
 
-type Question = {
+export interface Question {
   question: string
   answers: Answer[]
+  _id: string
 }
 
 export type QuizData = {
