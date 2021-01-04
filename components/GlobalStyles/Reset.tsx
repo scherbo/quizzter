@@ -11,12 +11,6 @@ export const Reset: React.FC = () => (
         box-sizing: border-box;
       }
 
-      /* Remove default padding */
-      ul[class],
-      ol[class] {
-        padding: 0;
-      }
-
       /* Remove default margin */
       body,
       h1,
@@ -24,8 +18,6 @@ export const Reset: React.FC = () => (
       h3,
       h4,
       p,
-      ul[class],
-      ol[class],
       li,
       figure,
       figcaption,

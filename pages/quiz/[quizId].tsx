@@ -1,78 +1,69 @@
 import React from 'react'
 
+import styled from '#root/theme'
 import { Request } from '#root/utils'
-import { Container, Paragraph, Heading, Button, Radio } from '#root/components'
-import { ExtendedNextPageContext } from '#root/types'
+import { Container, Paragraph, Heading, Card } from '#root/components'
+import { ExtendedNextPageContext, Answer, QuizData } from '#root/types'
 
-type QuestionProps = {
-  question: {
-    question: string
-    answers: {
-      answer: string
-      correct: boolean
-      _id: string
-    }[]
+import { Question } from '#root/components/pages/quiz/question'
+import { Result } from '#root/components/pages/quiz/result'
+
+interface QuizProps {
+  quiz: QuizData
+}
+
+const ProgressBar = styled.div<{ progress: number }>`
+  position: relative;
+  height: 10px;
+  margin-top: 15px;
+  margin-bottom: 23px;
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  border-radius: ${({ theme }) => theme.common.borderRadius};
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: ${({ progress }) => `translateX(${-100 + progress}%)`};
+    background-color: ${({ theme }) => theme.colors.primary};
+    border-radius: ${({ theme }) => theme.common.borderRadius};
+    transition: 0.3s;
   }
-  handleAnswer: (value: { answer: string; correct: boolean }) => () => void
-}
-
-const Question = ({ question: { question, answers }, handleAnswer }: QuestionProps) => {
-  const [selected, setSelected] = React.useState<null | { answer: string; correct: boolean }>(null)
-
-  const handleSelectAnswer = (value: { answer: string; correct: boolean }) => () => {
-    setSelected(value)
-  }
-
-  return (
-    <div css={{ marginTop: 25 }}>
-      <Paragraph>{question}</Paragraph>
-      <ul>
-        {answers.map(({ answer, _id, correct }) => (
-          <li
-            key={_id}
-            onClick={handleSelectAnswer({ answer, correct })}
-            css={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem', padding: '10px 0', cursor: 'pointer' }}
-          >
-            <Radio active={answer === selected?.answer} />
-            <span css={{ marginLeft: 15 }}>{answer}</span>
-          </li>
-        ))}
-      </ul>
-      <Button onClick={handleAnswer(selected as { answer: string; correct: boolean })} disabled={!selected}>
-        Answer question
-      </Button>
-    </div>
-  )
-}
-
-type QuizProps = {
-  quiz: Record<string, any>
-}
+`
 
 const Quiz = ({ quiz }: QuizProps) => {
   const [questionStep, setQuestionStep] = React.useState(0)
-  const [score, setScore] = React.useState(0)
+  const [answers, setAnswers] = React.useState<(Answer | undefined)[]>([])
+  const [progress, setProgress] = React.useState(0)
 
-  const handleAnswer = (answer: { answer: string; correct: boolean }) => () => {
-    setScore((s) => (answer.correct ? s + 1 : s))
+  const amountOfQuestions = quiz.questions.length
+
+  const handleAnswer = (answer?: Answer) => () => {
+    setAnswers((answers) => [...answers, answer])
     setQuestionStep((s) => s + 1)
   }
 
   React.useEffect(() => {
-    const questionsAmount = quiz.questions.length
-    if (questionStep === questionsAmount) {
-      alert(`You got ${score} correct answers out of ${questionsAmount} questions`)
-    }
-  }, [questionStep, score])
+    setProgress((questionStep * 100) / amountOfQuestions)
+  }, [questionStep])
 
   return (
-    <div css={{ paddingTop: 50 }}>
+    <div>
       <Container>
         <Heading type="h2">{quiz.title}</Heading>
-        <Paragraph>{quiz.description}</Paragraph>
+        <Paragraph size="md">{quiz.description}</Paragraph>
+        <ProgressBar progress={progress} />
 
-        {quiz.questions[questionStep] && (
-          <Question question={quiz.questions[questionStep]} handleAnswer={handleAnswer} />
+        {quiz.questions[questionStep] ? (
+          <Card>
+            <Question question={quiz.questions[questionStep]} handleAnswer={handleAnswer} />
+          </Card>
+        ) : (
+          <Result quiz={quiz} answers={answers} />
         )}
       </Container>
     </div>
